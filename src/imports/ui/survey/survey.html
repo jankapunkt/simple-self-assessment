@@ -1,0 +1,120 @@
+<template name="survey">
+    <h1>{{title}}</h1>
+    <hr>
+
+    {{#if showIntro}}
+        <div class="p-4 my-4 bg-light">
+            <h2>{{i18n "survey.intro"}}</h2>
+            <p>{{intro}}</p>
+        </div>
+
+        <div class="intro">
+            <button class="btn btn-primary start-button float-end">
+                {{i18n "survey.start"}}
+            </button>
+        </div>
+    {{else}}
+    {{! progress }}
+        <div class="progress" style="height: 20px;">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{progress}}%;"
+                 aria-valuenow="{{progress}}" aria-valuemin="0"
+                 aria-valuemax="100">
+                {{i18n "survey.progress"}}
+            </div>
+        </div>
+
+        {{! question }}
+        {{#unless isComplete}}
+            <div class="question my-4 p-4 bg-light">
+                {{#with currentQuestion}}
+                    {{#let question=this}}
+                        <h2>{{question.title}}</h2>
+
+                        <p>{{question.description}}</p>
+
+                        {{#each answer in question.answers}}
+                            <div class="my-2 p-2 w-100 bg-white">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           value="{{answer.value}}"
+                                           name="{{question.title}}"
+                                           id="{{question.id}}-{{@index}}">
+                                    <label class="form-check-label w-100 h-100"
+                                           for="{{question.id}}-{{@index}}">
+                                        {{answer.label}}
+                                    </label>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/let}}
+                {{else}}
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                {{/with}}
+            </div>
+        {{/unless}}
+
+        {{! actions }}
+        {{#if isComplete}}
+            <div class="results my-4 p-4 bg-light">
+                <h2>{{i18n "survey.results"}}</h2>
+
+                {{#let result=finalResult}}
+                    <h1>
+                        <span class="badge bg-{{result.color}}">
+                            {{result.description}}
+                        </span>
+                    </h1>
+
+                    <p>{{result.details}}</p>
+                {{/let}}
+
+                <hr>
+                
+                <table class="table table-borderless">
+                    <tbody>
+                    {{#each group in scores}}
+                        <tr>
+                            <td>
+                                <span class="badge bg-{{group.color}}">
+                                    {{group.title}}
+                                </span>
+                            </td>
+                            <td> {{group.score}}</td>
+                            <td class="w-100">
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-{{group.color}}"
+                                         role="progressbar"
+                                         style="width: {{group.progress}}%;"
+                                         aria-valuenow="{{group.progress}}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        {{/if}}
+
+        {{! actions }}
+        <div class="actions">
+            {{#if hasNext}}
+                <button class="btn btn-primary next-button float-end">
+                    {{i18n "survey.next"}}
+                </button>
+            {{/if}}
+            {{#if hasFinish}}
+                <button class="btn btn-success finish-button float-end">
+                    {{i18n "survey.finish"}}
+                </button>
+            {{/if}}
+        </div>
+
+    {{/if}}
+</template>

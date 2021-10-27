@@ -1,0 +1,10 @@
+{
+  "survey": {
+    "intro": "Intro",
+    "start": "Start now",
+    "progress": "Progress",
+    "next": "Next",
+    "finish": "Finish",
+    "results": "Your results"
+  }
+}
