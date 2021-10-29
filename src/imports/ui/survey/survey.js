@@ -140,7 +140,7 @@ Template.survey.events({
       }
     })
 
-    if (highestCount > 1) finalResult = none
+    // if (highestCount > 1) finalResult = none
 
 
     templateInstance.state.set({

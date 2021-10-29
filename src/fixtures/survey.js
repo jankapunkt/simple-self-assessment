@@ -6,24 +6,28 @@ export default {
     {
       title: 'Jolly Jumpers',
       color: 'warning',
+      image: 'yellow.png',
       description: 'Jolly Jumpers Clan',
       details: 'You are now a member of the "Jolly Jumpers". No matter what happens, you always find a joyful way to "prank" yourself out of the situation.'
     },
     {
       title: 'Ruff Rebels',
       color: 'danger',
+      image: 'red.png',
       description: 'Ruff Rebels Clan',
       details: 'You are now a memeber of the notorious "Ruff Rebels". It\'s members are known for their boldness, powerfullness and their pride.'
     },
     {
       title: 'Soft Skillers',
       color: 'success',
+      image: 'green.png',
       description: 'Soft skillers Clan',
       details: 'You are now a member of the warm hearted "Soft Skillers". Your charity and caring and big circles of friends is well known everywhere.'
     },
     {
       title: 'Able Analysts',
       color: 'primary',
+      image: 'blue.png',
       description: 'Able Analysts Clan',
       details: 'You are now a member of the "Able Anaysts" clan. There is no known riddle that they weren\'t able to solve.'
     },
