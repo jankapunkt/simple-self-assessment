@@ -4,6 +4,17 @@ import './survey.scss'
 import './survey.html'
 
 const { title, intro, questions, groups, none } = survey
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 
 Template.survey.onCreated(function () {
   const instance = this
@@ -19,6 +30,10 @@ Template.survey.onCreated(function () {
     const progress = 100 * (page / (maxPages + 1))
     const showIntro = index === -1
     const currentQuestion = questions[index]
+    
+
+    if (currentQuestion && currentQuestion.shuffle) shuffle(currentQuestion.answers)
+
     const isLast = page === maxPages
     instance.state.set({ page, maxPages, progress, hasNext: false, showIntro, isLast, currentQuestion })
   })

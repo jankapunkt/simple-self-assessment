@@ -1,4 +1,67 @@
+/* custom.scss */
+/* import the necessary Bootstrap files */
+@import "{}/node_modules/bootstrap/scss/functions";
+@import "{}/node_modules/bootstrap/scss/variables";
+@import "{}/node_modules/bootstrap/scss/mixins/buttons";
+
+/* -------begin customization-------- */
+
+/* or, use an existing variable */
+$theme-colors: (
+    primary: #d16209,
+    secondary: #61310b,
+    light: #e2e2e2,
+    gray: #a4a4a4,
+    dark: #141414,
+    warning: #dca503,
+    danger: #9b272a,
+    info: #0b7787,
+    success: #919b38,
+);
+
+
+@each $color, $value in $theme-colors {
+  .bg-#{color} {
+    color: white !important;
+    background-color: $value !important;
+  }
+}
+
+/* ------- end customization -------- */
+/* finally, import Bootstrap to set the changes! */
+@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+
+
 body {
   padding: 10px;
   font-family: sans-serif;
+  background-image: url("bg.jpg");
+  font-family: "Ubuntu";
+}
+
+.container {
+  filter: drop-shadow(0px 0px 10px black)
+}
+
+@font-face {
+  font-family: "Tajamuka";
+  src: url("tajamuka-script.regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("ubuntu.regular.ttf") format("truetype");
+}
+
+h1, h2, h3, h4 {
+  font-family: "Tajamuka";
+}
+
+p {
+  font-family: "Ubuntu";
+}
+
+.btn {
+  color: white !important;
+  filter: drop-shadow(0px 4px 4px black)
 }

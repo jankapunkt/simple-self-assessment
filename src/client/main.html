@@ -3,7 +3,17 @@
 </head>
 
 <body>
-<div class="container">
-    {{> survey}}
+{{#unless started}}
+<div class="container p-5 bg-white">
+    <h1>ESCAPE ROOM PSYCHO ASSESSMENT</h1>
+    <p>Before we can start with your escape room experience wa need to assess your psycholocial profile with a short story and a few questions.</p>
+    <button class="btn w-100 btn-primary continue-button">
+      Continue  
+    </button> 
 </div>
+{{else}}
+<div class="container bg-light px-3">
+  {{> survey}}
+</div>
+{{/unless}}
 </body>
